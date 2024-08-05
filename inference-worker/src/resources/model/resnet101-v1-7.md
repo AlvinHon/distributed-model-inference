@@ -1,0 +1,1 @@
+Download from https://github.com/onnx/models/blob/main/validated/vision/classification/resnet/model/resnet101-v1-7.onnx
