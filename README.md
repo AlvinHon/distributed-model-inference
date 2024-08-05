@@ -2,13 +2,11 @@
 
 An example distributed system for Machine Learning model inference by using `Kafka`. 
 
-The system here serves user requests to predict objects from input image. 
-The word "distributed" here does not imply the techniques in dividing a model or input data for parallel execution.
-It indeed refers to a loosely coupled architecture where workers can perform model inference in parallel for maximizing the throughput of the request completion.
+The system serves user requests to predict objects from input images. The word "distributed" here does not imply techniques for dividing a model or input data for parallel execution. Instead, it refers to a loosely coupled architecture where workers can perform model inference in parallel to maximize the throughput of request completion.
 
 ![Created in https://app.diagrams.net](architecture.drawio.svg)
 
-In general, a server handles image uploaded by user and delievers inference request via Kafka broker. A group of workers receive the requests and run Machine Learning model to predict objects. Worker will deliver the prediction result to Kafka. The result will be accumulated in the server such that later on users can query the inference result.
+In general, a server handles images uploaded by users and delivers inference requests via a Kafka broker. A group of workers receives the requests and runs a Machine Learning model to predict objects. Workers will deliver the prediction results to Kafka. The results will be accumulated on the server so that users can later query the inference results.
 
 The system is composed of
 - `Spring boot` REST server which uses database by `JPA`.
@@ -23,7 +21,7 @@ A `NodeJs` client script is included for demonstrating how to interact with the 
 |---|---|
 |[kafka](./kafka)|Contains a Docker Compose file to run Kafka in docker.|
 |[inference-server](./inference-server)|A Maven project - Sprint boot REST server.|
-|[inference-worker](./inference-workder)|A Maven project - Java program for ML model inference.|
+|[inference-worker](./inference-worker)|A Maven project - Java program for ML model inference.|
 |[client-demo](./client-demo)|Contains a client `nodejs` script for interaction with the system.|
 
 
