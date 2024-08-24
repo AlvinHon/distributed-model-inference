@@ -1,0 +1,36 @@
+# Modified from https://github.com/mariadb-developers/read-write-split-java-app/blob/main/docker-compose.yaml
+version: "3.9"
+services:
+  server-1:
+    image: alejandrodu/mariadb
+    container_name: server-1
+    environment:
+      - MARIADB_CREATE_DATABASE=inference
+      - MARIADB_CREATE_USER=user:password
+      - MARIADB_CREATE_REPLICATION_USER=replication_user:replication_password
+      - MARIADB_CREATE_MAXSCALE_USER=maxscale_user:maxscale_password
+
+  server-2:
+    image: alejandrodu/mariadb
+    container_name: server-2
+    environment:
+      - MARIADB_REPLICATE_FROM=replication_user:replication_password@server-1:3306
+
+  server-3:
+    image: alejandrodu/mariadb
+    container_name: server-3
+    environment:
+      - MARIADB_REPLICATE_FROM=replication_user:replication_password@server-1:3306
+
+  maxscale:
+    image: alejandrodu/mariadb-maxscale
+    container_name: maxscale
+    command: --admin_host 0.0.0.0 --admin_secure_gui false
+    ports:
+      - "8989:8989"
+      - "3306:4000"
+    environment:
+      - MAXSCALE_USER=maxscale_user:maxscale_password
+      - MARIADB_HOST_1=server-1 3306
+      - MARIADB_HOST_2=server-2 3306
+      - MARIADB_HOST_3=server-3 3306
