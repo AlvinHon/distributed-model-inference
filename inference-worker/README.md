@@ -10,7 +10,19 @@ It works as follows:
 1. Produce Kafka message to topic `inference-result`
 1. Repeat step 2
 
-See [Config.java](src/main/java/com/ah/inference/Config.java) for its configuration.
+## Usage
+
+```sh
+java -jar <Path to .jar file>
+```
+
+See Section [Build](#build) for building the jar executable.
+
+The application is configurable by environment variables. See [Config.java](src/main/java/com/ah/inference/Config.java) for the default values.
+
+Environment Variables:
+- `BOOTSTRAP_SERVERS`: bootstrap servers for Kafka. String value contains a list of servers separated by comma.
+- `POLL_DURATION`: duration in milliseconds for polling kafka consumer messages.
 
 ## Machine Learning Model 
 
@@ -31,14 +43,6 @@ mvn clean compile assembly:single
 ```
 
 The built .jar file will be created under `/target` folder. E.g. `inference-1.0-SNAPSHOT-jar-with-dependencies.jar`.
-
-
-## Run
-
-
-```sh
-java -jar <Path to .jar file>
-```
 
 
 
