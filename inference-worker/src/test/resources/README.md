@@ -1,0 +1,2 @@
+This folder contains test data:
+- [fox.ser](./fox.ser): an InferenceRequest Object Serialized by java Object serializer (ObjectOutputStream). It contains the input tensor created from a red fox picture (so expected the ML prediction to be "red fox").
