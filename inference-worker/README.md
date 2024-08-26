@@ -44,6 +44,22 @@ mvn clean compile assembly:single
 
 The built .jar file will be created under `/target` folder. E.g. `inference-1.0-SNAPSHOT-jar-with-dependencies.jar`.
 
+## Run in Docker
+
+Assuming the built java executable has be placed under `/target` folder. Build the docker image:
+
+```sh
+# build image with name "inference-workder-jar"
+docker image build -t inference-worker-jar .
+```
+
+Run the docker container:
+
+```sh
+# run with name "inference-workder-1"
+docker run --rm -d --network host --name inference-worker-1 inference-worker-jar
+```
+
 
 
 
