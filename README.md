@@ -19,8 +19,7 @@ A `NodeJs` client script is included for demonstrating how to interact with the 
 
 |folder|description|
 |---|---|
-|[kafka](./kafka)|Contains a Docker Compose file to run Kafka in docker.|
-|[mariadb](./mariadb)|Contains a Docker Compose file to setup database layer.|
+|[docker](./docker)|Contains Docker Compose file(s) to run services such as `Kafka` and `MariaDB` in docker.|
 |[inference-server](./inference-server)|A Maven project - Sprint boot REST server.|
 |[inference-worker](./inference-worker)|A Maven project - Java program for ML model inference.|
 |[client-demo](./client-demo)|Contains a client `nodejs` script for interaction with the system.|
