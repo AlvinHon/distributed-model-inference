@@ -23,6 +23,7 @@ import com.ah.inference_server.http.ResultResponse;
 import com.ah.inference_server.service.InferenceRequestService;
 import com.ah.inference_server.service.InferenceResultService;
 import com.ah.inference_server.service.RegistrationService;
+import com.ah.inference_server.service.StorePreprocessDataService;
 import com.ah.message.InferenceResult;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -40,6 +41,9 @@ public class Controller {
     @Autowired
     private RegistrationService registrationService;
 
+    @Autowired
+    private StorePreprocessDataService storePreprocessDataService;
+
     @PostMapping("/register")
     public RegisterResponse register(@RequestBody RegisterRequest registerRequest) {
         var uuid = registrationService.newRegistry();
@@ -52,12 +56,18 @@ public class Controller {
             @RequestParam("seq") int paramSeq,
             @RequestParam("topk") int paramTopK,
             @RequestParam("payload") MultipartFile param_payload) throws Exception {
-        var imageRequest = new ImageRequest(paramUuid, paramSeq, paramTopK, param_payload.getBytes());
+        var payloadBytes = param_payload.getBytes();
+        var imageRequest = new ImageRequest(paramUuid, paramSeq, paramTopK, payloadBytes);
         var uuid = imageRequest.validatedUuid();
         var image = imageRequest.validatedImage();
         var seq = imageRequest.validatedSeq();
         var topk = imageRequest.validatedTopK();
 
+        // Store the image data to object storage. Expected other microservices to
+        // process this data.
+        storePreprocessDataService.store(uuid, seq, payloadBytes);
+        // Send the inference request. Other microservices will process this request
+        // upon receiving it.
         inferenceRequestService.sendRequest(image, uuid, seq, topk);
     }
 

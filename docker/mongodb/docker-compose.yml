@@ -1,0 +1,27 @@
+services:
+  mongodb01:
+    image: 'bitnami/mongodb:latest'
+    container_name: 'mongodb01'
+    environment:
+      - MONGODB_ROOT_PASSWORD=password
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb01
+      - MONGODB_REPLICA_SET_MODE=primary
+      - MONGODB_REPLICA_SET_KEY=mongodbRskey
+      - MONGODB_USERNAME=user
+      - MONGODB_PASSWORD=password
+      - MONGODB_DATABASE=inference-mongodb
+    ports:
+      - '27017:27017'
+  mongodb02:
+    image: 'bitnami/mongodb:latest'
+    container_name: 'mongodb02'
+    depends_on:
+      - mongodb01
+    environment:
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb02
+      - MONGODB_REPLICA_SET_MODE=secondary
+      - MONGODB_REPLICA_SET_KEY=mongodbRskey
+      - MONGODB_INITIAL_PRIMARY_HOST=mongodb01
+      - MONGODB_INITIAL_PRIMARY_ROOT_PASSWORD=password
+    ports:
+      - '27018:27017'
