@@ -31,18 +31,13 @@ docker compose -f docker-compose.yml up -d
 
 ## Topics
 
-In the system, there are two kinds of message, `inference-request` and `inference-result`. As the names suggested, clients send Requests to brokers. Workers will pull the requests and create results after some processing. Then the result will be sent back to brokers.
+In the system, there are several kinds of message, `preprocess-request`, `inference-request` and `inference-result`.
 
 Here we use the client scripts `kafka-topics.sh` (or on Windows, `kafka-topics.bat`) to create the topics. The client scripts are bundled with the Kafka releases [here](https://kafka.apache.org/downloads). 
 
-### inference-request
 
 ```sh
+bin/kafka-topics.sh --create --bootstrap-server localhost:29092 --replication-factor 3 --partitions 3 --topic preprocess-request
 bin/kafka-topics.sh --create --bootstrap-server localhost:29092 --replication-factor 3 --partitions 3 --topic inference-request
-```
-
-### inference-result
-
-```sh
 bin/kafka-topics.sh --create --bootstrap-server localhost:29092 --replication-factor 3 --partitions 3 --topic inference-result
 ```

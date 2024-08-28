@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
  * process. The data is stored as document in mongo db, that it assumes the size
  * of the data should be less than 16MB.
  */
-@Document(collation = "preprocess_data")
+@Document(collection = "preprocess_data")
 public class PreprocessData {
     @Id
     private String id;

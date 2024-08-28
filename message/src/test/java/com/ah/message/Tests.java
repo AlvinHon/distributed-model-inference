@@ -43,4 +43,21 @@ public class Tests {
         assertEquals(inferenceResult.seq(), deserialized.seq());
         assertArrayEquals(inferenceResult.predictions(), deserialized.predictions());
     }
+
+    @Test
+    public void testPreprocessRequest() {
+        PreprocessRequest preprocessRequest = new PreprocessRequest("Hello, World!", 1, 2, "input");
+        byte[] bytes = null;
+        try (PreprocessRequestSerializer serializer = new PreprocessRequestSerializer()) {
+            bytes = serializer.serialize(null, preprocessRequest);
+        }
+        PreprocessRequest deserialized = null;
+        try (PreprocessRequestDeserializer deserializer = new PreprocessRequestDeserializer()) {
+            deserialized = deserializer.deserialize(null, bytes);
+        }
+        assertEquals(preprocessRequest.id(), deserialized.id());
+        assertEquals(preprocessRequest.seq(), deserialized.seq());
+        assertEquals(preprocessRequest.topk(), deserialized.topk());
+        assertEquals(preprocessRequest.searchKey(), preprocessRequest.searchKey());
+    }
 }

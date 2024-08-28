@@ -1,4 +1,4 @@
-package com.ah.inference_server.utility;
+package com.ah.preprocessor;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;

@@ -3,7 +3,7 @@
 A `Spring boot` application serves REST APIs for Machine Learning Model Inference.
 
 Two main tasks:
-- Handle image file uploaded by users and deliver inference request to Kafka brokers.
+- Handle image file uploaded by users and deliver preprocess request to Kafka streams.
 - Listen Kafka brokers to receive inference result messages. Store the inference result into Database, and serve the associated queries from users.
 
 The configuration, including kafka connection parameters, can be found in [application.properties](src/main/resources/application.properties).

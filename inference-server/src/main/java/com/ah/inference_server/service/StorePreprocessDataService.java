@@ -21,11 +21,14 @@ public class StorePreprocessDataService {
      * @param uuid The UUID of the request
      * @param seq  The sequence number of the request
      * @param data The image data
+     * @return The search key of the stored data
      */
-    public void store(UUID uuid, int seq, byte[] data) {
+    public String store(UUID uuid, int seq, byte[] data) {
+        var searchKey = uuid.toString() + String.valueOf(seq);
         var preprocessData = new PreprocessData();
-        preprocessData.setSearchKey(uuid.toString() + String.valueOf(seq));
+        preprocessData.setSearchKey(searchKey);
         preprocessData.setData(data);
         preprocessDataRepository.save(preprocessData);
+        return searchKey;
     }
 }

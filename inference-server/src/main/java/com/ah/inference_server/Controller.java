@@ -20,7 +20,7 @@ import com.ah.inference_server.http.RegisterRequest;
 import com.ah.inference_server.http.RegisterResponse;
 import com.ah.inference_server.http.ResultRequest;
 import com.ah.inference_server.http.ResultResponse;
-import com.ah.inference_server.service.InferenceRequestService;
+import com.ah.inference_server.service.PreprocessRequestService;
 import com.ah.inference_server.service.InferenceResultService;
 import com.ah.inference_server.service.RegistrationService;
 import com.ah.inference_server.service.StorePreprocessDataService;
@@ -33,7 +33,7 @@ public class Controller {
     final static Logger logger = Logger.getLogger(Controller.class.getName());
 
     @Autowired
-    private InferenceRequestService inferenceRequestService;
+    private PreprocessRequestService preprocessRequestService;
 
     @Autowired
     private InferenceResultService inferenceResultService;
@@ -59,16 +59,16 @@ public class Controller {
         var payloadBytes = param_payload.getBytes();
         var imageRequest = new ImageRequest(paramUuid, paramSeq, paramTopK, payloadBytes);
         var uuid = imageRequest.validatedUuid();
-        var image = imageRequest.validatedImage();
+        imageRequest.validatedImage();
         var seq = imageRequest.validatedSeq();
         var topk = imageRequest.validatedTopK();
 
         // Store the image data to object storage. Expected other microservices to
         // process this data.
-        storePreprocessDataService.store(uuid, seq, payloadBytes);
-        // Send the inference request. Other microservices will process this request
+        var searchKey = storePreprocessDataService.store(uuid, seq, payloadBytes);
+        // Send the preprocess request. Other microservices will process this request
         // upon receiving it.
-        inferenceRequestService.sendRequest(image, uuid, seq, topk);
+        preprocessRequestService.send(uuid, seq, topk, searchKey);
     }
 
     @GetMapping("/result")

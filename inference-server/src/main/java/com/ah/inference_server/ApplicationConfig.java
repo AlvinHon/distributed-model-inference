@@ -17,10 +17,10 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 
-import com.ah.message.InferenceRequest;
-import com.ah.message.InferenceRequestSerializer;
 import com.ah.message.InferenceResult;
 import com.ah.message.InferenceResultDeserializer;
+import com.ah.message.PreprocessRequest;
+import com.ah.message.PreprocessRequestSerializer;
 
 @EnableKafka
 @Configuration
@@ -35,16 +35,16 @@ public class ApplicationConfig {
     private String consumerGroupId;
 
     @Bean
-    public ProducerFactory<String, InferenceRequest> producerFactory() {
+    public ProducerFactory<String, PreprocessRequest> producerFactory() {
         return new DefaultKafkaProducerFactory<>(Map.of(
                 ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers,
                 ProducerConfig.CLIENT_ID_CONFIG, producerClientId,
                 ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName(),
-                ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, InferenceRequestSerializer.class.getName()));
+                ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, PreprocessRequestSerializer.class.getName()));
     }
 
     @Bean
-    public KafkaTemplate<String, InferenceRequest> kafkaTemplate() {
+    public KafkaTemplate<String, PreprocessRequest> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 
