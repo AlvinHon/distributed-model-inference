@@ -21,7 +21,7 @@ A `NodeJs` client script is included for demonstrating how to interact with the 
 
 |folder|description|
 |---|---|
-|[docker](./docker)|Contains Docker Compose file(s) to run services such as `Kafka` and `MariaDB` in docker.|
+|[docker](./docker)|Contains Docker Compose file(s) to run services such as `Kafka`, `MariaDB` and `mongoDB` in docker.|
 |[inference-server](./inference-server)|A Maven project - Sprint boot REST server.|
 |[inference-worker](./inference-worker)|A Maven project - Java program for ML model inference.|
 |[preprocessor](./preprocessor/)| A Maven project - Java program for preprossing input from server.|

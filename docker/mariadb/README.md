@@ -6,6 +6,8 @@ The database proxy runs at port 3306 (for jdbc), and exposes port 8989 for admin
 - user: admin
 - password: mariadb
 
+
+To setup the containers, run
 ```sh
 docker compose up -d
 ```

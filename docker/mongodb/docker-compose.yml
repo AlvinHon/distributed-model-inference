@@ -1,3 +1,6 @@
+# Check for setting environment variables for MongoDB containers:
+# https://hub.docker.com/r/bitnami/mongodb
+
 services:
   mongodb01:
     image: 'bitnami/mongodb:latest'

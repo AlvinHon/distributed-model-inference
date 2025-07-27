@@ -20,12 +20,6 @@ Docker installation is required.
 To setup the containers, run
 
 ```sh
-IMAGE=apache/kafka:latest docker compose -f docker-compose.yml up -d
-```
-
-Or on Windows,
-```cmd
-set IMAGE=apache/kafka:latest
 docker compose -f docker-compose.yml up -d
 ```
 
@@ -37,7 +31,7 @@ Here we use the client scripts `kafka-topics.sh` (or on Windows, `kafka-topics.b
 
 
 ```sh
-bin/kafka-topics.sh --create --bootstrap-server localhost:29092 --replication-factor 3 --partitions 3 --topic preprocess-request
-bin/kafka-topics.sh --create --bootstrap-server localhost:29092 --replication-factor 3 --partitions 3 --topic inference-request
-bin/kafka-topics.sh --create --bootstrap-server localhost:29092 --replication-factor 3 --partitions 3 --topic inference-result
+bin/kafka-topics.sh --bootstrap-server localhost:29092 --replication-factor 3 --partitions 3 --create --topic preprocess-request
+bin/kafka-topics.sh --bootstrap-server localhost:29092 --replication-factor 3 --partitions 3 --create --topic inference-request
+bin/kafka-topics.sh --bootstrap-server localhost:29092 --replication-factor 3 --partitions 3 --create --topic inference-result
 ```
