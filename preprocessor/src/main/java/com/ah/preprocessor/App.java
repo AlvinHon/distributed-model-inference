@@ -71,6 +71,7 @@ public class App {
                     @Override
                     public InferenceRequest apply(PreprocessRequest preprocessRequest) {
                         logger.info("Processing request: " + preprocessRequest.id());
+                        Metrics.incrementRequestCount();
                         return findData
                                 .apply(preprocessRequest.searchKey())
                                 .flatMap(App::convertImageBytes)

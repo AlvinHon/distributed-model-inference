@@ -46,4 +46,12 @@ public class Config {
 
     }
 
+    public class Prometheus {
+        public static final String PUSHGATEWAY_HOST = "localhost:9091";
+        public static final String JOB_NAME = "preprocessor";
+
+        public static final String METRIC_REQUEST_COUNT = "preprocessor_requests_total";
+        public static final String METRIC_REQUEST_COUNT_HELP_STRING = "Total number of preprocess requests processed";
+    }
+
 }

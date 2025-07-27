@@ -21,7 +21,7 @@ A `NodeJs` client script is included for demonstrating how to interact with the 
 
 |folder|description|
 |---|---|
-|[docker](./docker)|Contains Docker Compose file(s) to run services such as `Kafka`, `MariaDB` and `mongoDB` in docker.|
+|[docker](./docker)|Contains Docker Compose file(s) to run services such as `Kafka`, `MariaDB`, `mongoDB` and `prometheus` in docker.|
 |[inference-server](./inference-server)|A Maven project - Sprint boot REST server.|
 |[inference-worker](./inference-worker)|A Maven project - Java program for ML model inference.|
 |[preprocessor](./preprocessor/)| A Maven project - Java program for preprossing input from server.|
@@ -33,6 +33,7 @@ A `NodeJs` client script is included for demonstrating how to interact with the 
 1. Follow [kafka/README.md](/docker/kafka/README.md), you will be able to run kafka cluster in docker containers.
 1. Follow [mariadb/README.md](/docker/mariadb/README.md), you will be able to run database(s) in docker containers.
 1. Follow [monogodb/README.md](/docker/mongodb/README.md), you will be able to run mongodb(s) in docker containers.
+1. Follow [prometheus/README.md](/docker/prometheus/README.md), you will be able to run Prometheus server and Grafana for monitoring and visualization.
 1. Follow [message/README.md](/message/README.md), you will install the common java package `com.ah.message` for the other java projects in this repo.
 1. Follow [preprocessor/README.md](./preprocessor/README.md), you will be able to run multiple java programs for input preprocessing tasks.
 1. Follow [inference-workder/README.md](/inference-worker/README.md), you will be able to run multiple java programs for model inference tasks.
