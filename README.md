@@ -36,6 +36,6 @@ A `NodeJs` client script is included for demonstrating how to interact with the 
 1. Follow [prometheus/README.md](/docker/prometheus/README.md), you will be able to run Prometheus server and Grafana for monitoring and visualization.
 1. Follow [message/README.md](/message/README.md), you will install the common java package `com.ah.message` for the other java projects in this repo.
 1. Follow [preprocessor/README.md](./preprocessor/README.md), you will be able to run multiple java programs for input preprocessing tasks.
-1. Follow [inference-workder/README.md](/inference-worker/README.md), you will be able to run multiple java programs for model inference tasks.
+1. Follow [inference-worker/README.md](/inference-worker/README.md), you will be able to run multiple java programs for model inference tasks.
 1. Follow [inference-server/README.md](/inference-server/README.md), you will run the REST API server to handle user requests.
 1. Try out the system by using the client script [here](/client-demo/README.md)!

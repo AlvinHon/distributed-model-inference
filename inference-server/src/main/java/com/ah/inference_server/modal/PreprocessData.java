@@ -18,7 +18,7 @@ public class PreprocessData {
     @Indexed(name = "search_key_index")
     private String searchKey;
 
-    @Indexed(name = "ttl_index", expireAfterSeconds = 60)
+    @Indexed(name = "ttl_index", expireAfter = "60s")
     private byte[] data;
 
     public String getId() {
