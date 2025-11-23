@@ -17,6 +17,8 @@ services:
       - MARIADB_REPLICATION_USER=replication_user
       - MARIADB_REPLICATION_PASSWORD=replication_password
       - MARIADB_HEALTHCHECK_GRANTS=REPLICA MONITOR
+    volumes:
+      - ./entrypoint:/docker-entrypoint-initdb.d
 
   server-2:
     image: mariadb:latest
